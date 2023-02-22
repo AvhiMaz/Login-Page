@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <div class="signup-box" align="items-center">
+        <img src="https://i.pinimg.com/originals/dc/cc/84/dccc846959dffafa30a836dfacf9bab9.gif" class="img" >
+
+        <form action="submitted.html" name="suForm" id="suform">
+            <input type="text" placeholder="Full name" id="name" onclick="resetbtn()" maxlength="30">
+            <input type="text" placeholder="Email" id="email" onclick="resetbtn()">
+            <input type="password" id="pass" placeholder="Password" onclick="resetbtn()" minlength="8">
+
+            <input type="checkbox" name="check" id="check" onclick="resetbtn()">
+            <label for="check" class="label"> I Agree with all the 'Terms and Conditions'.</label>
+
+            <input type="submit" id="submit-btn" value="Sign Up" onmouseover="mouseOver()">
+        </form>
+    </div>
+
+
+    <script>
+        var a = 0;
+
+        function mouseOver(){
+            const name = document.forms['suForm']['name'].value;
+            const email = document.forms['suForm']['email'].value;
+            const pass = document.forms['suForm']['pass'].value;
+
+            const tick = document.querySelector('#check');
+            const emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+
+        if((name == "" || !email.match(emailCheck) || pass == "" || tick.checked == false) && a == 0){
+            buttonMoveLeft();
+            a = 1;
+        }
+
+        if((name == "" || !email.match(emailCheck) || pass == "" || tick.checked == false) && a == 1){
+            buttonMoveRight();
+            a = 2;
+            return false;
+        }
+
+        if((name == "" || !email.match(emailCheck) || pass == "" || tick.checked == false) && a == 2){
+            buttonMoveLeft();
+            a = 1;
+            return false;
+        }
+
+        else{
+            document.getElementById('submit-btn').style.cursor = 'pointer';
+            return false;
+        };
+    };
+
+
+
+    function buttonMoveLeft(){
+        const button = document.getElementById('submit-btn');
+        button.style.transform = 'translateX(-160%)';
+    };
+
+
+    function buttonMoveRight(){
+        const button = document.getElementById('submit-btn');
+        button.style.transform = 'translateX(0%)';
+    };
+
+    function resetbtn(){
+        const button = document.getElementById('submit-btn');
+        button.style.transform = 'translateX(0%)';
+    };
+
+    
+
+    </script>
+</body>
+</html>
